@@ -12,26 +12,104 @@
         <div class="image-section">
             <img src="julesportimg.png" alt="Profile Image">
         </div>
-        <div class="content-section">
-            <h1>Nziza_Jules</h1>
-            <p>Web Developer | Designer | Freelancer</p>
-            <p>Full stack from Rwanda</p>
-                <h4>Visit me on my website</h4>
+        <div id="content-section">
+            <h1 id="nm">Nziza_Jules</h1>
+            <p id="dt">Web Developer | Designer | Freelancer</p>
+            <p id="fl">Full stack from Rwanda</p>
+                <h4 id="vt">Visit me on my website</h4>
                 <ul>
                     <li><a href="https://jules265.github.io/Migano.com/">Migano</a></li>
                     <li><a href="https://jules265.github.io/Nora_tech.com/">Nora_tech</a></li>
                     <li><a href="https://jules265.github.io/finished/first.html">College Baptiste Gacuba 2</a></li>
                 </ul>
+                <div class="trans"> 
+                   <select id="translate">
+                   <option>Translate</option>
+                   <option value="kiny">Kinyarwanda</option>
+                   <option value="French">French</option>
+                   <option value="English">English</option>
+                   </select>
+                   <button onclick="translater()">Translate</button>
+                   <select id="color">
+                    <option>Mode</option>
+                    <option value="dark">Dark</option>
+                    <option value="white">White</option>
+                    </select>
+                    <button onclick="dark()">Color Mode</button>
+                   </div>
             <button onclick="showMessage()">Contact Me</button>
+        </div>
+        <div class="modal">
+            <span class="close-modal">&times;</span>
+            <div class="modal-content">
+                <img src="" alt="Enlarged image">
+            </div>
         </div>
     </div>
     <script>
+    function translater(){
+       let choose = document.getElementById('translate').value;
+       if(choose === "kiny"){
+         document.getElementById('dt').textContent = 'Umuvumbuzi | Umunyamuderi | Uwikorera';
+         document.getElementById('fl').textContent = 'Uwujuje Ibyangimbwa Mu Rwanda';
+         document.getElementById('vt').textContent = 'Sura Imbuga Zanjye';
+       }
+       else if(choose === "English"){
+         document.getElementById('dt').textContent = 'Web Developer | Designer | Freelancer';
+         document.getElementById('fl').textContent = 'Full stack from Rwanda';
+         document.getElementById('vt').textContent = 'Visit me on my website';
+       }
+    }
         /* script.js */
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelector("button").addEventListener("click", function () {
-        alert("Thank you for reaching out!");
-    });
-});
+// document.addEventListener("DOMContentLoaded", function () {
+//     document.querySelector("button").addEventListener("click", function () {
+//         alert("Thank you for reaching out!");
+//     });
+// });
+function dark(){
+    let color = document.getElementById('color').value;
+    if(color === "dark"){         
+         document.getElementById('dt').style.color = 'white';
+         document.getElementById('fl').style.color = 'white';
+         document.getElementById('vt').style.color = 'white';
+         document.getElementById('nm').style.color = 'white';
+         document.body.style.backgroundColor = "#191819";
+         document.getElementById('content-section').style.backgroundColor = "#333";
+       }
+       
+       else{         
+        document.getElementById('nm').style.color = 'black';
+         document.getElementById('dt').style.color = 'black';
+         document.getElementById('fl').style.color = 'black';
+         document.getElementById('vt').style.color = 'black';
+         document.body.style.backgroundColor = "#ffffff";
+         document.getElementById('content-section').style.backgroundColor = "#ece2e2";
+       }
+}
+
+
+const moda = document.querySelector('.modal');
+        const modalIm = document.querySelector('.modal-content img');
+        const closeModa = document.querySelector('.close-modal');
+
+        const galleryItem = document.querySelectorAll('.image-section');
+        galleryItem.forEach(item => {
+            item.addEventListener('click', () => {
+                moda.style.display = 'flex';
+                modalIm.src = item.querySelector('img').src;
+            });
+        });
+        
+        closeModa.addEventListener('click', () => {
+            moda.style.display = 'none';
+        });
+
+        // To hide modal when clicking outside of the image
+        window.onclick = (event) => {
+            if (event.target === moda) {
+                moda.style.display = 'none';
+            }
+        };
 
     </script>
 </body>
